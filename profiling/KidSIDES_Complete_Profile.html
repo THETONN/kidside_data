@@ -1,0 +1,140 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>KidSIDES - Complete Data Profile</title>
+        <style>
+            body { 
+                font-family: Arial, sans-serif; 
+                margin: 0;
+                padding: 20px;
+                background-color: #f5f5f5;
+            }
+            .container { 
+                display: flex;
+                gap: 20px;
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+            .sidebar {
+                width: 250px;
+                background: white;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .content {
+                flex: 1;
+                background: white;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            h1 { 
+                color: #333;
+                margin-bottom: 20px;
+            }
+            h2 {
+                color: #444;
+                margin-top: 0;
+            }
+            .table-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            .table-list li {
+                padding: 10px;
+                margin-bottom: 5px;
+                background: #f8f9fa;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background-color 0.2s;
+            }
+            .table-list li:hover {
+                background: #e9ecef;
+            }
+            .table-list li.active {
+                background: #007bff;
+                color: white;
+            }
+            iframe {
+                width: 100%;
+                height: calc(100vh - 100px);
+                border: none;
+                border-radius: 4px;
+            }
+            .header {
+                text-align: center;
+                margin-bottom: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>KidSIDES - Complete Data Profile</h1>
+        </div>
+        <div class="container">
+            <div class="sidebar">
+                <h2>Tables</h2>
+                <ul class="table-list">
+                    <li onclick="showTable('overview')" class="active">Overview</li>
+    
+                    <li onclick="showTable('ade')">ade</li>
+        
+                    <li onclick="showTable('ade_nichd')">ade_nichd</li>
+        
+                    <li onclick="showTable('ade_nichd_enrichment')">ade_nichd_enrichment</li>
+        
+                    <li onclick="showTable('ade_null')">ade_null</li>
+        
+                    <li onclick="showTable('ade_null_distribution')">ade_null_distribution</li>
+        
+                    <li onclick="showTable('ade_raw')">ade_raw</li>
+        
+                    <li onclick="showTable('atc_raw_map')">atc_raw_map</li>
+        
+                    <li onclick="showTable('cyp_gene_expression_substrate_risk_information')">cyp_gene_expression_substrate_risk_information</li>
+        
+                    <li onclick="showTable('drug')">drug</li>
+        
+                    <li onclick="showTable('drug_gene')">drug_gene</li>
+        
+                    <li onclick="showTable('event')">event</li>
+        
+                    <li onclick="showTable('gene')">gene</li>
+        
+                    <li onclick="showTable('gene_expression')">gene_expression</li>
+        
+                    <li onclick="showTable('grip')">grip</li>
+        
+                    <li onclick="showTable('ryan')">ryan</li>
+        
+                    <li onclick="showTable('sider')">sider</li>
+        
+                </ul>
+            </div>
+            <div class="content">
+                <iframe id="contentFrame" src="KidSIDES_Overview.html"></iframe>
+            </div>
+        </div>
+        <script>
+            function showTable(tableName) {
+                // Update active state
+                document.querySelectorAll('.table-list li').forEach(li => {
+                    li.classList.remove('active');
+                });
+                event.target.classList.add('active');
+                
+                // Update iframe source
+                const frame = document.getElementById('contentFrame');
+                if (tableName === 'overview') {
+                    frame.src = 'KidSIDES_Overview.html';
+                } else {
+                    frame.src = tableName + '_profile.html';
+                }
+            }
+        </script>
+    </body>
+    </html>
+    
