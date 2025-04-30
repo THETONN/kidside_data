@@ -1,0 +1,10 @@
+{
+  "product_adverse_effect.csv": "statistics/product_adverse_effect/statistics.html",
+  "vocab_rxnorm_ingredient_to_product.csv": "statistics/vocab_rxnorm_ingredient_to_product/statistics.html",
+  "vocab_meddra_adverse_effect.csv": "statistics/vocab_meddra_adverse_effect/statistics.html",
+  "product_label.csv": "statistics/product_label/statistics.html",
+  "vocab_rxnorm_ingredient.csv": "statistics/vocab_rxnorm_ingredient/statistics.html",
+  "vocab_rxnorm_product.csv": "statistics/vocab_rxnorm_product/statistics.html",
+  "product_to_rxnorm.csv": "statistics/product_to_rxnorm/statistics.html",
+  "high_confidence.csv": "statistics/high_confidence/statistics.html"
+}

@@ -1,140 +1,238 @@
-
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>KidSIDES - Complete Data Profile</title>
-        <style>
-            body { 
-                font-family: Arial, sans-serif; 
-                margin: 0;
-                padding: 20px;
-                background-color: #f5f5f5;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Data Statistics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f0f4ff 0%, #f8fafc 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .card-container {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 40px 20px;
+        }
+        
+        .data-card {
+            width: 380px;
+            height: 420px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            background: white;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .data-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 45px rgba(99,102,241,0.2);
+        }
+        
+        .data-card:active {
+            transform: translateY(-6px) scale(0.98);
+        }
+        
+        .data-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        
+        .data-card:hover::after {
+            opacity: 1;
+        }
+        
+        .card-header {
+            height: 180px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s;
+        }
+        
+        .data-card:hover .card-bg {
+            transform: scale(1.05);
+        }
+        
+        .kidsides-bg {
+            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+        }
+        
+        .onsides-bg {
+            background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+        }
+        
+        .card-logo {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            font-size: 2rem;
+            z-index: 2;
+            transition: transform 0.3s;
+            margin-bottom: 80px;
+        }
+        
+        .data-card:hover .card-logo {
+            transform: translateX(-50%) scale(1.1);
+        }
+        
+        .kidsides-logo {
+            color: #3b82f6;
+        }
+        
+        .onsides-logo {
+            color: #6366f1;
+        }
+        
+        .card-body {
+            padding: 60px 30px 30px;
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .card-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #1e293b;
+            transition: color 0.3s;
+        }
+        
+        .data-card:hover .card-title {
+            color: #3b82f6;
+        }
+        
+        .onsides-card:hover .card-title {
+            color: #6366f1;
+        }
+        
+        .card-description {
+            color: #64748b;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .card-action {
+            margin-top: auto;
+            color: #3b82f6;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .onsides-action {
+            color: #6366f1;
+        }
+        
+        .action-arrow {
+            transition: transform 0.3s;
+        }
+        
+        .data-card:hover .action-arrow {
+            transform: translateX(5px);
+        }
+        
+        @media (max-width: 768px) {
+            .card-container {
+                flex-direction: column;
+                align-items: center;
             }
-            .container { 
-                display: flex;
-                gap: 20px;
-                max-width: 1400px;
-                margin: 0 auto;
-            }
-            .sidebar {
-                width: 250px;
-                background: white;
-                padding: 20px;
-                border-radius: 8px;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            }
-            .content {
-                flex: 1;
-                background: white;
-                padding: 20px;
-                border-radius: 8px;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            }
-            h1 { 
-                color: #333;
-                margin-bottom: 20px;
-            }
-            h2 {
-                color: #444;
-                margin-top: 0;
-            }
-            .table-list {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-            }
-            .table-list li {
-                padding: 10px;
-                margin-bottom: 5px;
-                background: #f8f9fa;
-                border-radius: 4px;
-                cursor: pointer;
-                transition: background-color 0.2s;
-            }
-            .table-list li:hover {
-                background: #e9ecef;
-            }
-            .table-list li.active {
-                background: #007bff;
-                color: white;
-            }
-            iframe {
+            
+            .data-card {
                 width: 100%;
-                height: calc(100vh - 100px);
-                border: none;
-                border-radius: 4px;
+                max-width: 380px;
             }
-            .header {
-                text-align: center;
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="header">
-            <h1>KidSIDES - Complete Data Profile</h1>
-        </div>
-        <div class="container">
-            <div class="sidebar">
-                <h2>Tables</h2>
-                <ul class="table-list">
-                    <li onclick="showTable('overview')" class="active">Overview</li>
-    
-                    <li onclick="showTable('ade')">ade</li>
-        
-                    <li onclick="showTable('ade_nichd')">ade_nichd</li>
-        
-                    <li onclick="showTable('ade_nichd_enrichment')">ade_nichd_enrichment</li>
-        
-                    <li onclick="showTable('ade_null')">ade_null</li>
-        
-                    <li onclick="showTable('ade_null_distribution')">ade_null_distribution</li>
-        
-                    <li onclick="showTable('ade_raw')">ade_raw</li>
-        
-                    <li onclick="showTable('atc_raw_map')">atc_raw_map</li>
-        
-                    <li onclick="showTable('cyp_gene_expression_substrate_risk_information')">cyp_gene_expression_substrate_risk_information</li>
-        
-                    <li onclick="showTable('drug')">drug</li>
-        
-                    <li onclick="showTable('drug_gene')">drug_gene</li>
-        
-                    <li onclick="showTable('event')">event</li>
-        
-                    <li onclick="showTable('gene')">gene</li>
-        
-                    <li onclick="showTable('gene_expression')">gene_expression</li>
-        
-                    <li onclick="showTable('grip')">grip</li>
-        
-                    <li onclick="showTable('ryan')">ryan</li>
-        
-                    <li onclick="showTable('sider')">sider</li>
-        
-                </ul>
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <!-- KidSIDES Card -->
+        <div class="data-card" onclick="window.location.href='../profiling/kidsides.html'">
+            <div class="card-header">
+                <div class="card-bg kidsides-bg"></div>
+                <div class="card-logo kidsides-logo">
+                    <i class="fas fa-chart-line"></i>
+                </div>
             </div>
-            <div class="content">
-                <iframe id="contentFrame" src="KidSIDES_Overview.html"></iframe>
+            <div class="card-body">
+                <div>
+                    <h2 class="card-title">KidSIDES</h2>
+                    <!-- <p class="card-description"> -->
+                    </p>
+                </div>
+                <div class="card-action">
+                    View <i class="fas fa-arrow-right action-arrow"></i>
+                </div>
             </div>
         </div>
-        <script>
-            function showTable(tableName) {
-                // Update active state
-                document.querySelectorAll('.table-list li').forEach(li => {
-                    li.classList.remove('active');
-                });
-                event.target.classList.add('active');
-                
-                // Update iframe source
-                const frame = document.getElementById('contentFrame');
-                if (tableName === 'overview') {
-                    frame.src = 'KidSIDES_Overview.html';
-                } else {
-                    frame.src = tableName + '_profile.html';
-                }
-            }
-        </script>
-    </body>
-    </html>
-    
+        
+        <!-- OnSIDES Card -->
+        <div class="data-card onsides-card" onclick="window.location.href='../profiling/onsides.html'">
+            <div class="card-header">
+                <div class="card-bg onsides-bg"></div>
+                <div class="card-logo onsides-logo">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+            </div>
+            <div class="card-body">
+                <div>
+                    <h2 class="card-title">OnSIDES</h2>
+                    <!-- <p class="card-description"> -->
+                    </p>
+                </div>
+                <div class="card-action onsides-action">
+                    View <i class="fas fa-arrow-right action-arrow"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
